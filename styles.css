@@ -31,6 +31,18 @@ header h1 {
 .subtitle {
     color: #888;
     font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.credit {
+    color: #aaa;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.credit strong {
+    color: #e94560;
+    font-style: normal;
 }
 
 /* Tabs */
