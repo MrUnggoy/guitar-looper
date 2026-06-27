@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Practice Video Looper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>🎸 Guitar Practice Looper</h1>
+            <p class="subtitle">Loop any section of a video to nail that riff</p>
+        </header>
+
+        <div class="source-selector">
+            <div class="tabs">
+                <button class="tab active" data-source="youtube">YouTube URL</button>
+                <button class="tab" data-source="local">Local File</button>
+            </div>
+
+            <div class="tab-content" id="youtube-input">
+                <input type="text" id="youtube-url" placeholder="Paste a YouTube URL here..." />
+                <button id="load-youtube">Load</button>
+            </div>
+
+            <div class="tab-content hidden" id="local-input">
+                <div class="drop-zone" id="drop-zone">
+                    <p>Drag & drop a video file here</p>
+                    <p>or</p>
+                    <button id="file-picker-btn">Choose File</button>
+                    <input type="file" id="file-input" accept="video/*" hidden />
+                </div>
+            </div>
+        </div>
+
+        <div class="player-container hidden" id="player-container">
+            <div id="youtube-player-wrapper" class="hidden">
+                <div id="youtube-player"></div>
+            </div>
+            <video id="local-player" class="hidden" playsinline></video>
+
+            <div class="controls">
+                <div class="timeline-container">
+                    <div class="timeline" id="timeline">
+                        <div class="timeline-progress" id="timeline-progress"></div>
+                        <div class="loop-region" id="loop-region"></div>
+                        <div class="marker marker-a" id="marker-a" title="Loop Start (A)"></div>
+                        <div class="marker marker-b" id="marker-b" title="Loop End (B)"></div>
+                        <div class="playhead" id="playhead"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <div class="control-group">
+                        <button id="play-btn" title="Play/Pause (Space)">▶️</button>
+                        <button id="stop-btn" title="Stop">⏹️</button>
+                    </div>
+
+                    <div class="control-group loop-controls">
+                        <button id="set-a-btn" title="Set Loop Start (A)">Set A</button>
+                        <button id="set-b-btn" title="Set Loop End (B)">Set B</button>
+                        <button id="clear-loop-btn" title="Clear Loop (C)">Clear Loop</button>
+                        <button id="toggle-loop-btn" class="active" title="Toggle Loop (L)">🔁 Loop On</button>
+                    </div>
+
+                    <div class="control-group speed-controls">
+                        <label>Speed:</label>
+                        <button class="speed-btn" data-speed="0.25">0.25x</button>
+                        <button class="speed-btn" data-speed="0.5">0.5x</button>
+                        <button class="speed-btn" data-speed="0.75">0.75x</button>
+                        <button class="speed-btn active" data-speed="1">1x</button>
+                        <button class="speed-btn" data-speed="1.25">1.25x</button>
+                    </div>
+                </div>
+
+                <div class="loop-info" id="loop-info">
+                    <span>Loop: <strong id="loop-start-display">--</strong> → <strong id="loop-end-display">--</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="shortcuts-panel">
+            <h3>⌨️ Keyboard Shortcuts</h3>
+            <ul>
+                <li><kbd>Space</kbd> Play / Pause</li>
+                <li><kbd>A</kbd> Set loop start</li>
+                <li><kbd>B</kbd> Set loop end</li>
+                <li><kbd>C</kbd> Clear loop points</li>
+                <li><kbd>L</kbd> Toggle loop on/off</li>
+                <li><kbd>←</kbd> Rewind 5s</li>
+                <li><kbd>→</kbd> Forward 5s</li>
+                <li><kbd>-</kbd> Slow down</li>
+                <li><kbd>+</kbd> Speed up</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
