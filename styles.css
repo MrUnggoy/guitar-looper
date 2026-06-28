@@ -74,6 +74,11 @@ header h1 {
     background: #1a4a7a;
 }
 
+.tab:active {
+    transform: scale(0.95);
+    background: #d63851;
+}
+
 .tab.active {
     background: #e94560;
     color: #fff;
@@ -294,12 +299,18 @@ header h1 {
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
-    transition: all 0.2s;
+    transition: all 0.15s ease;
 }
 
 .control-buttons button:hover {
     background: #1a4a7a;
     color: #fff;
+}
+
+.control-buttons button:active {
+    background: #e94560;
+    color: #fff;
+    transform: scale(0.93);
 }
 
 .control-buttons button.active {
@@ -320,6 +331,10 @@ header h1 {
 .speed-btn.active {
     background: #e94560 !important;
     color: #fff !important;
+}
+
+.speed-btn:active {
+    transform: scale(0.93);
 }
 
 .loop-info {
