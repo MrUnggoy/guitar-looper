@@ -458,6 +458,24 @@
     }
 
     // ==========================================
+    // Fullscreen
+    // ==========================================
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+    function toggleFullscreen() {
+        const container = document.getElementById('player-container');
+        if (!container) return;
+
+        if (!document.fullscreenElement) {
+            container.requestFullscreen().catch(() => {});
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // ==========================================
     // Keyboard shortcuts
     // ==========================================
     document.addEventListener('keydown', (e) => {
@@ -494,6 +512,9 @@
             case '=':
             case '+':
                 adjustSpeed(1);
+                break;
+            case 'f':
+                toggleFullscreen();
                 break;
         }
     });
