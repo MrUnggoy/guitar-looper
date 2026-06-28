@@ -372,17 +372,33 @@ kbd {
 }
 
 /* Fullscreen */
-.player-container:fullscreen {
+.player-container:fullscreen,
+.player-container:-webkit-full-screen {
     background: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .player-container:fullscreen #youtube-player-wrapper,
-.player-container:fullscreen #local-player {
+.player-container:-webkit-full-screen #youtube-player-wrapper {
+    flex: 1;
     max-height: 80vh;
+}
+
+.player-container:fullscreen #local-player,
+.player-container:-webkit-full-screen #local-player {
+    flex: 1;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+#fullscreen-btn {
+    font-size: 1.2rem;
+    line-height: 1;
 }
 
 /* Responsive */

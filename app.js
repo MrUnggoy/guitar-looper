@@ -467,13 +467,38 @@
         if (!container) return;
 
         if (!document.fullscreenElement) {
-            container.requestFullscreen().catch(() => {});
+            // Try standard, then webkit fallback
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+            }
         } else {
-            document.exitFullscreen();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
         }
     }
 
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    // Ensure YouTube iframe gets allowfullscreen attribute
+    function patchYouTubeIframeFullscreen() {
+        const iframe = document.querySelector('#youtube-player-wrapper iframe');
+        if (iframe) {
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('allow', 'fullscreen; autoplay');
+        }
+    }
+
+    fullscreenBtn.addEventListener('click', () => {
+        patchYouTubeIframeFullscreen();
+        toggleFullscreen();
+    });
 
     // ==========================================
     // Keyboard shortcuts
